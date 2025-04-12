@@ -1,0 +1,612 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marvel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmtJtoFldBZNVpavEZGqru6BoB3tYuZYKeTg&s">
+    <style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Audiowide", sans-serif;
+}
+
+header {
+    background-color: red;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+}
+
+nav li a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    transition: color 0.3s, transform 0.3s;
+}
+
+nav li a:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    background: red;
+    color: white;
+    font-size: 1.2rem;
+    padding: 5px 0;
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.marquee span {
+    display: inline-block;
+    padding-right: 100px;
+}
+
+.persons h2 {
+    border-top: solid 9px black;
+    text-align: center;
+}
+
+.card {
+    margin: 15px;
+    display: inline-block;
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.999s;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background-color: #ffffff;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    border: 10px solid #000000;
+    border-radius: 10px;
+    justify-content: center;
+    font-size: 24px;
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    background-color: #ff0000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border: 10px solid #000000;
+    border-radius: 10px;
+    justify-content: center;
+    font-size: 24px;
+    transform: rotateY(180deg);
+}
+
+.card-back p {
+    z-index: 1;
+    position: relative;
+}
+
+.card2 {
+    width: 190px;
+    height: 254px;
+    background: rgba(211, 211, 211, 0.199);
+    position: absolute;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0px 0px 30px -10px rgba(0, 0, 0, 0.3);
+}
+
+#c1 {
+    background-color: black;
+}
+
+#c2 {
+    background-color: blue;
+}
+
+#c3 {
+    background-color: red;
+}
+
+#c4 {
+    background-color: green;
+}
+
+.main:hover #c1 {
+    transform: translateX(-100px) rotate(-40deg);
+}
+
+.main:hover #c2 {
+    transform: translateX(-50px) rotate(-30deg);
+}
+
+.main:hover #c3 {
+    transform: translateX(0) rotate(-20deg);
+}
+
+.main:hover #c4 {
+    transform: translateX(50px) rotate(-10deg);
+}
+
+#c1:hover {
+    transform: translateX(-150px) rotate(0deg) !important;
+}
+
+#c2:hover {
+    transform: translateX(-100px) rotate(0deg) !important;
+}
+
+#c3:hover {
+    transform: translateX(-50px) rotate(0deg) !important;
+}
+
+#c4:hover {
+    transform: translateX(50px) rotate(0deg) !important;
+}
+
+.main {
+    display: grid;
+    height: 50vmax;
+    place-items: center;
+}
+
+.avengers {
+    padding: 60px 20px;
+    background: #0f0f0f;
+    color: white;
+    text-align: center;
+}
+
+.avengers h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.video-scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+
+.video-track {
+    display: inline-flex;
+    gap: 20px;
+    padding: 10px;
+}
+
+.video-track iframe {
+    width: 400px;
+    height: 225px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+}
+
+.video-track iframe:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+#intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#player iframe {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    pointer-events: none;
+}
+
+footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: "Audiowide", sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.footer-nav {
+    margin: 20px 0;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: red;
+}
+
+.footer-socials {
+    margin: 20px 0;
+}
+
+.footer-socials a img {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s;
+}
+
+.footer-socials a img:hover {
+    transform: scale(1.2);
+}
+
+.footer-rights {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.footer-rights a {
+    color: white;
+}
+
+.footer-rights a:hover {
+    color: red;
+}
+
+/* Mobile Adaptation */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .card-front {
+        font-size: 18px;
+    }
+
+    .card-back {
+        font-size: 18px;
+    }
+
+    .video-track iframe {
+        width: 100%;
+        height: 225px;
+    }
+
+    .footer-container {
+        padding: 20px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .main {
+        height: auto;
+    }
+
+    .card2 {
+        width: 150px;
+        height: 200px;
+    }
+
+    footer {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        font-size: 14px;
+    }
+
+    .marquee-container {
+        font-size: 1rem;
+    }
+
+    .card-front, .card-back {
+        font-size: 16px;
+    }
+
+    .video-track iframe {
+        width: 100%;
+        height: 200px;
+    }
+
+    .avengers h2 {
+        font-size: 24px;
+    }
+
+    .footer-container {
+        padding: 10px;
+    }
+
+    .footer-nav {
+        font-size: 14px;
+    }
+
+    .footer-socials a img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div id="intro">
+        <div id="player"></div>
+      </div>
+      
+
+    <header>
+        <div class="marquee-wrapper">
+            <div class="marquee">
+                <span>iron man spider man thor captain america hawkeye black panther black widow capitan marvel</span>
+                <span>iron man spider man thor captain america hawkeye black panther black widow capitan marvel</span>
+            </div>
+          </div>
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhopIqog08Ewtw2MHfr8Eoov7JDlsvhgZNVA&s" width="200" height="100">
+        </div>
+        <nav class="navigation">
+            <ul>
+                <li> <a href="">home</a></li>
+                <li> <a href="">about</a></li>
+                <li> <a href="">idk</a></li>
+                <li> <a href="">login</a></li>
+                <li> <a href="">register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="about_marvel">
+        <h1>about marvel</h1>
+        <p>marvel is a comic book publisher based in New York City. It is the flagship publisher of the Marvel Comics line of comic books, graphic novels, and other comic media. Marvel Comics is one of the world's largest comic book publishers, with a worldwide distribution network and a large fan base.</p>
+
+    </section>
+    <section class="persons">
+        <h2>top 3 characters in avengers</h2>
+        <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <p>1st </p>
+              </div>
+              <div class="card-back">
+                <p>Iron man</p>
+                <img class="iron" src="https://static.wikia.nocookie.net/mua/images/7/75/Img_0001_iron_man_mout.obj.png/revision/latest?cb=20200207025405" alt="" >
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <p>2nd</p>
+              </div>
+              <div class="card-back">
+                <p>Capitan America</p>
+                <img class="captian" src="https://static.wikia.nocookie.net/disney/images/f/fa/Captain-America-AOU-Render.png/revision/latest/scale-to-width-down/1200?cb=20180420015558&path-prefix=es" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <p>3rd</p>
+              </div>
+              <div class="card-back">
+                <p>thor</p>
+                <img class="thorimg" src="https://static.wikia.nocookie.net/heroes-fr/images/e/e3/Avengers_endgame_fat_thor_3_png_by_captain_kingsman16.png/revision/latest/thumbnail/width/360/height/360?cb=20200703113812&path-prefix=fr" alt="">
+              </div>
+            </div>
+          </div>
+    </section>
+    <section class="avengers">
+        <h2>Avengers Highlights</h2>
+        <div class="video-scroll-container">
+          <div class="video-track">
+            <iframe src="https://www.youtube.com/embed/TcMBFSGVi1c" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/hA6hldpSTF8" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/6ZfuNTqbHE8" frameborder="0" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/KCSNFZKbhZE" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </section>
+      
+  <footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Marvel_Logo.svg/2560px-Marvel_Logo.svg.png" alt="Marvel Logo">
+        </div>
+        <div class="footer-nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">idk</a>
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+        </div>
+        <div class="footer-socials">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+        </div>
+        <p class="footer-rights">&copy; 2025 Marvel Fan Page. All rights reserved.</p>
+    </div>
+
+</body>
+<script>
+
+  
+  gsap.registerPlugin(ScrollTrigger);
+
+  
+  gsap.utils.toArray(".card").forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+      opacity: 0,
+      y: 100,
+      duration: 1,
+      delay: i * 0.2,
+      ease: "power3.out",
+    });
+  });
+
+
+  gsap.to(window, {
+    scrollTo: {
+      y: "max",
+      autoKill: false
+    },
+    duration: 1,
+    ease: "power2.inOut"
+  });
+
+  const marquee = document.querySelector('.marquee');
+  gsap.to(marquee, {
+    x: "-50%",
+    repeat: -1,
+    duration: 20,
+    ease: "linear"
+    
+  });
+
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      videoId: 'UhVjp48U2Oc',
+      playerVars: {
+        autoplay: 1,
+        controls: 0,
+        showinfo: 0,
+        modestbranding: 1,
+        fs: 0,
+        rel: 0
+      },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.ENDED) {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }
+  }
+</script>
+</html>
